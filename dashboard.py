@@ -84,7 +84,7 @@ st.divider() #Linha separadora
 
 ####DADOS 
 
-df = pd.read_csv("BDEstacaoMeterologica.csv", sep=";")
+df = pd.read_csv("dados_estacao_meteorologica_set_out_2026.csv", sep=";")
 
 # Padronizar os nomes das colunas
 df.columns = df.columns.str.strip()
