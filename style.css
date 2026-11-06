@@ -1,0 +1,546 @@
+/* PALETA DE CORES GERAL*/
+:root {
+    --fundo: #160b20;          
+    --cartao: #211531;         
+    --cartao-2: #2c1d40;       
+    --borda: #412a56;          
+    --texto: #e8eef8;          
+    --texto-suave: #e7c9f7;    
+    --azul: #00d1fb;/* destaque quando passa o mouse */
+    --azul-botao: #00d1fb;     
+    --laranja: #fbb000;        
+}
+
+/* ESTILOS*/
+html {
+    scroll-behavior: smooth; 
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 20px;          
+    color: var(--texto);
+    background: radial-gradient(circle at top, #932b91 0%, var(--fundo) 60%) fixed; /* Fundo detsaque*/
+}
+main {
+    width: 100%;
+}
+section {
+    background-color: var(--cartao);
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    scroll-margin-top: 20px;
+}
+
+h2 {
+    margin: 0 0 14px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+}
+
+h3 {
+    margin: 18px 0 8px;
+    font-size: 1rem;
+    color: var(--texto);
+}
+
+/* BANNER COM CÉU ANIMADO */
+#banner {
+    position: relative;
+    overflow: hidden; 
+    box-sizing: border-box; 
+    width: 100%;
+    height: 340px;
+    margin-bottom: 20px;
+    padding: 24px;
+    border-radius: 16px;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    background: linear-gradient(#fff1a8, #ffb86b);   /* degradê manhã*/
+}
+
+/* Título ESTAÇÃO METEOROLÓGICA*/
+.banner-texto {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.banner-texto h1 {
+    margin: 0;
+    font-size: clamp(1.9rem, 5vw, 2.9rem); 
+    font-weight: 800;
+    line-height: 1.1;
+    text-align: left;
+}
+
+/* Subtítulo PROJETO E DESENVOLVIMENTO*/
+.subtitulo {
+    margin: 6px 0 0;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* SOL */
+#sol {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fffbe0, #ffd54a);
+    box-shadow: 0 0 60px 25px rgba(255, 220, 100, 0.6);
+    opacity: 0;
+}
+
+/* LUA e CRATERAS */
+#lua {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    box-shadow: 0 0 40px 12px rgba(220, 220, 255, 0.45);
+    opacity: 0;
+    background:
+        radial-gradient(circle at 65% 32%, rgba(150, 150, 190, 0.4) 9px, transparent 10px), /* grande */
+        radial-gradient(circle at 30% 62%, rgba(150, 150, 190, 0.4) 6px, transparent 7px),  /* média */
+        radial-gradient(circle at 62% 74%, rgba(150, 150, 190, 0.4) 4px, transparent 5px),  /* pequena */
+        radial-gradient(circle at 35% 35%, #ffffff, #d9d9ee);
+}
+
+/* ESTRELAS*/
+#estrelas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.estrela {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: brilhar ease-in-out infinite alternate; /* FAZ PISCAR*/
+}
+
+@keyframes brilhar {
+    from { opacity: 0.3; }
+    to   { opacity: 1; }
+}
+
+/* MENU*/
+.botao-menu {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 5;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.28);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.botao-menu:focus-visible {
+    outline: 3px solid var(--laranja);
+    outline-offset: 2px;
+}
+
+.botao-menu .barra {
+    display: block;
+    width: 22px;
+    height: 3px;
+    border-radius: 2px;
+    background: white;
+    transition: transform 0.25s, opacity 0.25s;
+}
+
+/* 3 barrinhas menu*/
+.botao-menu.aberto .barra:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.botao-menu.aberto .barra:nth-child(2) { opacity: 0; }
+.botao-menu.aberto .barra:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* MENU direção*/
+.menu-topicos {
+    position: absolute;
+    top: 70px;
+    left: 16px;
+    z-index: 5;
+    min-width: 230px;
+    padding: 6px;
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    background: rgba(11, 17, 32, 0.92);
+}
+
+.menu-topicos[hidden] {
+    display: none;
+}
+
+.menu-topicos ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-topicos a {
+    display: block;
+    padding: 9px 14px;
+    border-radius: 10px;
+    color: var(--texto);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.menu-topicos a:hover,
+.menu-topicos a:focus-visible {
+    background: rgba(59, 156, 255, 0.25);
+    outline: none;
+}
+
+/* ÚLTIMA MEDIÇÃO */
+.ultima-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.data-grande {
+    display: flex;
+    flex-direction: column;
+}
+
+.data-dia {
+    font-size: clamp(4rem, 12vw, 6.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    color: white;
+}
+
+.data-mes {
+    margin-top: 6px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+}
+
+.data-hora {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+
+.cartao-icone svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* CARDS*/
+.cartoes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.cartao-medida {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: var(--cartao-2);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+    transition: transform 0.15s, border-color 0.15s;
+}
+
+.cartao-medida:hover {
+    transform: translateY(-2px);
+    border-color: var(--azul);
+}
+
+.cartao-icone {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--cor);
+}
+
+.cartao-icone svg {
+    width: 26px;
+    height: 26px;
+    stroke-width: 2;
+}
+
+.cartao-temperatura { --cor: #ff7a59; }
+.cartao-umidade     { --cor: #4dabf7; }
+.cartao-pressao     { --cor: #a78bfa; }
+.cartao-luz         { --cor: #ffb300; }
+.cartao-chuva       { --cor: #5cc8ff; }
+
+.cartao-rotulo {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+
+.cartao-valor {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.cartao-valor small {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--texto-suave);
+}
+
+/* BOTÕES*/
+.botoes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap; 
+    margin: 6px 0 12px;
+}
+
+.botoes button {
+    font: inherit;
+    font-weight: bold;
+    padding: 6px 14px;
+    border: 2px solid var(--azul);
+    border-radius: 999px;      /* formato de pílula */
+    background: transparent;
+    color: #f9feff;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.botoes button:hover {
+    background: rgba(59, 156, 255, 0.18);
+}
+
+.botoes button[aria-pressed="true"] {
+    background: var(--azul-botao);
+    border-color: var(--azul-botao);
+    color: white;
+}
+
+.botoes button:focus-visible,
+.botao-principal:focus-visible,
+.botao-secundario:focus-visible,
+.botao-link:focus-visible {
+    outline: 3px solid var(--laranja);
+    outline-offset: 2px;
+}
+
+.botao-link {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 9px 20px;
+    border-radius: 999px;
+    background: var(--azul-botao);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.botao-link:hover {
+    background: #114060;
+}
+
+#dashboard .botao-link {
+    margin-top: 0;
+}
+
+/* TABELAS */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--borda);
+    border-right: 1px solid var(--borda);
+}
+
+th:last-child,
+td:last-child {
+    border-right: none;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* CABEÇALHO TABELA */
+thead th {
+    background: #41166a;
+    color: white;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* LINHA ALTERNADA*/
+tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.025);
+}
+
+/* LINHA DESTACADA:*/
+tbody tr {
+    transition: background-color 0.15s;
+}
+
+tbody tr:hover {
+    background: #44255db6;
+}
+
+tbody tr:hover td {
+    color: white;
+}
+
+/* Tabela de medições*/
+.rolagem-tabela {
+    max-height: 420px;
+    overflow: auto;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+}
+
+.rolagem-tabela table {
+    min-width: 640px;
+}
+
+.rolagem-tabela thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.rolagem-tabela:focus-visible {
+    outline: 3px solid var(--laranja);
+}
+
+.vazio {
+    margin: 0;
+    padding: 24px;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+#contagem-tabela {
+    margin: 12px 0 8px;
+    font-size: 14px;
+    color: var(--texto-suave);
+}
+
+/* BUSCA POR DIA E HORÁRIO */
+.busca {
+    margin: 14px 0 6px;
+    padding: 14px;
+    background: var(--cartao-2);
+    border: 1px solid var(--borda);
+    border-radius: 14px;
+}
+
+.busca h3 {
+    margin-top: 0;
+}
+
+.campos {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.campos label {
+    display: flex;
+    flex-direction: column; 
+    gap: 4px;
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+}
+
+.campos select,
+.campos input {
+    font: inherit;
+    padding: 8px 10px;
+    min-width: 110px;
+    color: var(--texto);
+    background: #0f1626;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    color-scheme: dark;
+}
+
+.campos select:focus-visible,
+.campos input:focus-visible {
+    outline: 2px solid var(--azul);
+}
+
+.acoes {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.botao-principal,
+.botao-secundario {
+    font: inherit;
+    font-weight: bold;
+    padding: 8px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.botao-principal {
+    border: 2px solid var(--azul-botao);
+    background: var(--azul-botao);
+    color: white;
+}
+
+.botao-secundario {
+    border: 2px solid var(--borda);
+    background: transparent;
+    color: var(--texto);
+}
+
+.botao-secundario:hover {
+    border-color: var(--azul);
+}
+ /*HORÁRIO INVÁLIDO*/
+#aviso-busca {
+    min-height: 1.2em;
+    margin: 10px 0 0;
+    font-size: 0.9rem;
+    color: #ff9b8a;
+}

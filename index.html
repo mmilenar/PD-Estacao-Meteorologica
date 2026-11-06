@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- NOTA: UTILIZAMOS A EXTENSÃO LIVE SERVER DO VSCODE POR CAUSA DO ERRO DO SERVIDOR-->
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Estação Meteorológica | PD</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!--BANNER SOL E LUA-->
+    <header id="banner">
+
+        <div id="sol" aria-hidden="true"></div>
+        <div id="lua" aria-hidden="true"></div>
+        <div id="estrelas" aria-hidden="true"></div>
+
+        <!-- MENU -->
+        <button id="botao-menu" class="botao-menu" type="button"
+                aria-label="Abrir menu de tópicos" aria-expanded="false" aria-controls="menu-topicos">
+            <span class="barra"></span>
+            <span class="barra"></span>
+            <span class="barra"></span>
+        </button>
+        <nav id="menu-topicos" class="menu-topicos" aria-label="Tópicos da página" hidden>
+            <ul>
+                <li><a href="#ultima-medicao">Última medição</a></li>
+                <!-- DASHBOARD PYTHON OUTRA PÁGINA-->
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#medicoes">Tabelas de medições</a></li>
+                <li><a href="#busca">Buscar por dia e horário</a></li>
+                
+            </ul>
+        </nav>
+
+        <div class="banner-texto">
+            <h1>Estação Meteorológica</h1>
+            <p class="subtitulo">Projeto e Desenvolvimento</p>
+        </div>
+    </header>
+    <main>
+        <!-- Última medição -->
+        <section id="ultima-medicao" aria-labelledby="titulo-ultima">
+            <h2 id="titulo-ultima">Última medição</h2>
+            <div id="ultimo" aria-live="polite">Carregando...</div>
+        </section>
+
+        <!-- DIRECIONAMENTO PARA O DASHBOARD -->
+        <section id="dashboard" aria-labelledby="titulo-dashboard">
+            <h2 id="titulo-dashboard">Dashboard</h2>
+            <a class="botao-link" href="https://dashboard-estacaometeorologica.streamlit.app/">Abrir dashboard completo &rarr;</a>
+        </section>
+
+        <!-- TABELAS-->
+        <section id="medicoes" aria-labelledby="titulo-medicoes">
+            <h2 id="titulo-medicoes">Tabelas de medições</h2>
+
+            <!-- Botões pra direcionar TABELA (Alterei pra pág não ficar extensa CÓDIGO ROLAGEM TABELA)-->
+            <div class="botoes" role="group" aria-label="Escolher tabela">
+                <button type="button" data-tabela="dia">Do dia</button>
+                <button type="button" data-tabela="semana">Da semana</button>
+                <button type="button" data-tabela="mes">Do mês</button>
+                <button type="button" data-tabela="total">Total</button>
+            </div>
+
+            <!-- FILTRO mês, dia e faixa de horário -->
+            <form id="busca" class="busca" aria-labelledby="titulo-busca">
+                <h3 id="titulo-busca">Buscar por dia e horário</h3>
+                <div class="campos">
+                    <label>Mês
+                        <select id="filtro-mes"></select>
+                    </label>
+                    <label>Dia
+                        <select id="filtro-dia"></select>
+                    </label>
+                    <label>Das
+                        <input type="time" id="filtro-hora-de" value="00:00">
+                    </label>
+                    <label>Até
+                        <input type="time" id="filtro-hora-ate" value="23:59">
+                    </label>
+                </div>
+                <div class="acoes">
+                    <button type="submit" class="botao-principal">Buscar</button>
+                    <button type="button" id="limpar-busca" class="botao-secundario">Limpar</button>
+                </div>
+                <p id="aviso-busca" role="alert"></p>
+            </form>
+
+            <!-- CONTAR MEDIÇÕES-->
+            <p id="contagem-tabela"></p>
+
+            <!-- ROLAGEM TABELA-->
+            <div id="tabela-medicoes" class="rolagem-tabela" tabindex="0"
+                 role="region" aria-label="Tabela de medições">
+                Carregando...
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
